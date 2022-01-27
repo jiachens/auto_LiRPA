@@ -133,7 +133,7 @@ def Train(model, t, loader, eps_scheduler, norm, train, opt, bound_type, method=
             data_ub = data_lb = data
 
         if list(model.parameters())[0].is_cuda:
-            data, labels = data.cuda(), labels.cuda().float()
+            data, labels = data.cuda(), labels.cuda().long()
             data_lb, data_ub = data_lb.cuda(), data_ub.cuda()
 
         ptb = PerturbationLpNorm(norm=norm, eps=eps, x_L=data_lb, x_U=data_ub)
