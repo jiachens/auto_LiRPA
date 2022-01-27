@@ -133,7 +133,7 @@ def Train(model, t, loader, eps_scheduler, norm, train, opt, bound_type, method=
             data_ub = data_lb = data
 
         if list(model.parameters())[0].is_cuda:
-            data, labels = data.cuda(), labels.cuda()
+            data, labels = data.cuda(), labels.cuda().float()
             data_lb, data_ub = data_lb.cuda(), data_ub.cuda()
 
         ptb = PerturbationLpNorm(norm=norm, eps=eps, x_L=data_lb, x_U=data_ub)
@@ -150,7 +150,7 @@ def Train(model, t, loader, eps_scheduler, norm, train, opt, bound_type, method=
             c = None
         else:
             # Generate speicification matrix (when loss fusion is not used).
-            print(data,labels)
+            # print(data,labels)
             c = get_spec_matrix(data, labels, num_class)
             x = (x,) if final_node_name is None else (x, labels)
             output = model(x, final_node_name=final_node_name)
