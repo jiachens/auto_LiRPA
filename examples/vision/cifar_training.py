@@ -150,7 +150,7 @@ def Train(model, t, loader, eps_scheduler, norm, train, opt, bound_type, method=
             c = None
         else:
             # Generate speicification matrix (when loss fusion is not used).
-            print(data.shape,labels.shape,num_class)
+            print(data,labels)
             c = get_spec_matrix(data, labels, num_class)
             x = (x,) if final_node_name is None else (x, labels)
             output = model(x, final_node_name=final_node_name)
