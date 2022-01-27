@@ -151,6 +151,7 @@ def Train(model, t, loader, eps_scheduler, norm, train, opt, bound_type, method=
         else:
             # Generate speicification matrix (when loss fusion is not used).
             c = get_spec_matrix(data, labels, num_class)
+            print(data.shape,labels.shape,)
             x = (x,) if final_node_name is None else (x, labels)
             output = model(x, final_node_name=final_node_name)
             regular_ce = CrossEntropyLoss()(output, labels)  # regular CrossEntropyLoss used for warming up

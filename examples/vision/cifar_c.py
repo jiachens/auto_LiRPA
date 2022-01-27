@@ -3,7 +3,7 @@ Description:
 Autor: Jiachen Sun
 Date: 2022-01-27 15:36:05
 LastEditors: Jiachen Sun
-LastEditTime: 2022-01-27 16:00:18
+LastEditTime: 2022-01-27 16:04:16
 '''
 import os
 import numpy as np
@@ -94,7 +94,7 @@ def generate_examples(data_dir,corruption,severity):
     labels = labels[:num_images]
     images = np.load(images_file)
     images = images[(severity - 1) * num_images:severity * num_images]
-    print(images.shape)
+    # print(images.shape)
     # return zip(torch.Tensor(images), torch.Tensor(labels))
     dataset = CustomDataset(images,labels)
     return dataset
