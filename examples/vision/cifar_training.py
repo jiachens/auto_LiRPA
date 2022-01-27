@@ -245,6 +245,14 @@ def main(args):
         test_data = datasets.CIFAR10("./data", train=False, download=True,
                 transform=transforms.Compose([transforms.ToTensor(), normalize]))
     elif args.data == 'CIFAR-C' and args.verify:
+        dummy_input = torch.randn(2, 3, 32, 32)
+        normalize = transforms.Normalize(mean=[0.4914, 0.4822, 0.4465], std=[0.2023, 0.1994, 0.2010])
+        train_data = datasets.CIFAR10("./data", train=True, download=True,
+                transform=transforms.Compose([
+                    transforms.RandomHorizontalFlip(),
+                    transforms.RandomCrop(32, 4, padding_mode='edge'),
+                    transforms.ToTensor(),
+                    normalize]))
         test_data = cifar_c.generate_examples("./data",args.corruption,args.severity)
     else:
         raise NotImplementedError()
