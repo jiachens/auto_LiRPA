@@ -53,8 +53,8 @@ lirpa_model = BoundedModule(model, torch.empty_like(image), device=image.device)
 print('Running on', image.device)
 
 ## Step 4: Compute bounds using LiRPA given a perturbation
-eps = 0.3
-norm = float("inf")
+eps = 0.25
+norm = 2
 ptb = PerturbationLpNorm(norm = norm, eps = eps)
 image = BoundedTensor(image, ptb)
 # Get model prediction as usual
