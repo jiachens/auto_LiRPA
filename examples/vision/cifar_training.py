@@ -208,7 +208,7 @@ def main(args):
         model_ori = models.Models[args.model](in_ch=1, in_dim=28)
     else:
         if args.model == 'resnet18':
-            model_ori = models.Models[args.model]
+            model_ori = models.Models[args.model]()
         else:
             model_ori = models.Models[args.model](in_ch=3, in_dim=32)
     epoch = 0
