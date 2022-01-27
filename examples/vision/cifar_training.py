@@ -49,7 +49,7 @@ parser.add_argument("--scheduler_opts", type=str, default="start=101,length=801,
 parser.add_argument("--bound_opts", type=str, default=None, choices=["same-slope", "zero-lb", "one-lb"],
                     help='bound options for relu')
 parser.add_argument('--clip_grad_norm', type=float, default=8.0)
-parser.add_argument('--corruption', type=str, default='Gaussian')
+parser.add_argument('--corruption', type=str, default='gaussian_noise')
 parser.add_argument('--severity', type=int, default=1)
 
 
