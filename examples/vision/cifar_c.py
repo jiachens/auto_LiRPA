@@ -94,6 +94,7 @@ def generate_examples(data_dir,corruption,severity):
     labels = labels[:num_images]
     images = np.load(images_file)
     images = images[(severity - 1) * num_images:severity * num_images]
+    print(images.shape)
     # return zip(torch.Tensor(images), torch.Tensor(labels))
     dataset = CustomDataset(images,labels)
     return dataset
