@@ -3,7 +3,7 @@ Description:
 Autor: Jiachen Sun
 Date: 2022-01-27 15:36:05
 LastEditors: Jiachen Sun
-LastEditTime: 2022-01-27 15:48:39
+LastEditTime: 2022-01-27 15:58:30
 '''
 import os
 import numpy as np
@@ -107,7 +107,7 @@ class CustomDataset(Dataset):
         return len(self.label)
 
     def __getitem__(self, idx):
-        image = normalize(torch.Tensor(self.data[idx] / 255))
+        image = normalize(torch.Tensor(self.data[idx] / 255).transpose(2,0,1))
         label = self.label[idx]
         return image, label
 
