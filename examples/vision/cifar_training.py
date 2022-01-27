@@ -254,7 +254,7 @@ def main(args):
     if args.data == 'MNIST':
         train_data.mean = test_data.mean = torch.tensor([0.0])
         train_data.std = test_data.std = torch.tensor([1.0])
-    elif args.data == 'CIFAR':
+    elif args.data in ['CIFAR','CIFAR-C']:
         train_data.mean = test_data.mean = torch.tensor([0.4914, 0.4822, 0.4465])
         train_data.std = test_data.std = torch.tensor([0.2023, 0.1994, 0.2010])
 
