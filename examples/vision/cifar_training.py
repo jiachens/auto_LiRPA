@@ -3,7 +3,7 @@ import multiprocessing
 import random
 import time
 import logging
-
+import cifar_c
 import torch.optim as optim
 import torchvision.datasets as datasets
 import torchvision.transforms as transforms
@@ -30,7 +30,7 @@ parser.add_argument("--verify", action="store_true", help='verification mode, do
 parser.add_argument("--no_loss_fusion", action="store_true", help='without loss fusion, slower training mode')
 parser.add_argument("--load", type=str, default="", help='Load pretrained model')
 parser.add_argument("--device", type=str, default="cuda", choices=["cpu", "cuda"], help='use cpu or cuda')
-parser.add_argument("--data", type=str, default="CIFAR", choices=["MNIST", "CIFAR"], help='dataset')
+parser.add_argument("--data", type=str, default="CIFAR", choices=["MNIST", "CIFAR", "CIFAR-C"], help='dataset')
 parser.add_argument("--seed", type=int, default=100, help='random seed')
 parser.add_argument("--eps", type=float, default=8.8/255, help='Target training epsilon')
 parser.add_argument("--norm", type=float, default='inf', help='p norm for epsilon perturbation')
@@ -49,6 +49,9 @@ parser.add_argument("--scheduler_opts", type=str, default="start=101,length=801,
 parser.add_argument("--bound_opts", type=str, default=None, choices=["same-slope", "zero-lb", "one-lb"],
                     help='bound options for relu')
 parser.add_argument('--clip_grad_norm', type=float, default=8.0)
+parser.add_argument('--corruption', type=str, default='Gaussian')
+parser.add_argument('--severity', type=int, default=1)
+
 
 args = parser.parse_args()
 exp_name = args.model + '_b' + str(args.batch_size) + '_' + str(args.bound_type) + '_epoch' + str(args.num_epochs) + '_' + args.scheduler_opts + '_' + str(args.eps)[:6]
@@ -241,6 +244,10 @@ def main(args):
                     normalize]))
         test_data = datasets.CIFAR10("./data", train=False, download=True,
                 transform=transforms.Compose([transforms.ToTensor(), normalize]))
+    elif args.data == 'CIFAR-C' and args.verify:
+        test_data = cifar_c.generate_examples("./data",args.corruption,args.severity)
+    else:
+        raise NotImplementedError()
 
     train_data = torch.utils.data.DataLoader(train_data, batch_size=args.batch_size, shuffle=True, pin_memory=True, num_workers=min(multiprocessing.cpu_count(),4))
     test_data = torch.utils.data.DataLoader(test_data, batch_size=args.batch_size//2, pin_memory=True, num_workers=min(multiprocessing.cpu_count(),4))
