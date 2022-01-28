@@ -3,13 +3,13 @@ Description:
 Autor: Jiachen Sun
 Date: 2022-01-27 17:35:15
 LastEditors: Jiachen Sun
-LastEditTime: 2022-01-28 17:17:12
+LastEditTime: 2022-01-28 17:50:27
 '''
 import numpy as np
 import sys
 import os
 
-MODEL = ['resnet18_b256_CROWN-IBP_epoch2000_start=101,length=801,mid=0.4_0.25']
+MODEL = ['resnet18']
 COR_H = ['gaussian_noise', 'shot_noise', 'impulse_noise', 'pixelate', 'jpeg_compression']
 COR_M = [ 'defocus_blur', 'frosted_glass_blur', 'motion_blur', 'zoom_blur', 'elastic']
 COR_L = ['contrast','fog','snow','frost','brightness']
