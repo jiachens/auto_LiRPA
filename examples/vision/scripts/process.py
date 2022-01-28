@@ -3,7 +3,7 @@ Description:
 Autor: Jiachen Sun
 Date: 2022-01-27 17:35:15
 LastEditors: Jiachen Sun
-LastEditTime: 2022-01-27 21:59:53
+LastEditTime: 2022-01-27 22:01:36
 '''
 import numpy as np
 import sys
@@ -19,7 +19,7 @@ def calculate(corruptions,dir):
     total_error = 0
     for cor in corruptions:
         for sev in SEV:
-            file_name = corruptions + '_' + sev + '.out'
+            file_name = cor + '_' + sev + '.out'
             output = os.path.join(dir,file_name)
             f = open(output,'r')
             error = float(f.readlines()[-1].split(' ')[-2].split('=')[-1])
