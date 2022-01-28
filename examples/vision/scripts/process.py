@@ -24,7 +24,7 @@ def calculate(corruptions,dir):
             f = open(output,'r')
             error = float(f.readlines()[-1].split(' ')[-2].split('=')[-1])
             total_error += error
-    return total_error / (corruptions.len() * 5)
+    return total_error / (len(corruptions) * 5)
             
         
 
