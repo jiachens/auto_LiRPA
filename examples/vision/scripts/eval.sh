@@ -3,10 +3,10 @@
  # @Autor: Jiachen Sun
  # @Date: 2022-01-27 17:00:00
  # @LastEditors: Jiachen Sun
- # @LastEditTime: 2022-01-27 17:22:24
+ # @LastEditTime: 2022-01-28 17:18:03
 ### 
 
-for model in 'Densenet_cifar_32'; do
+for model in 'resnet18_b256_CROWN-IBP_epoch2000_start=101,length=801,mid=0.4_0.25'; do
 
 mkdir ./output/${model}
 
