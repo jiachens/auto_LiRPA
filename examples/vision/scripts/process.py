@@ -3,7 +3,7 @@ Description:
 Autor: Jiachen Sun
 Date: 2022-01-27 17:35:15
 LastEditors: Jiachen Sun
-LastEditTime: 2022-01-27 22:01:36
+LastEditTime: 2022-01-27 22:26:58
 '''
 import numpy as np
 import sys
@@ -13,7 +13,7 @@ MODEL = ['Densenet_cifar_32']
 COR_H = ['gaussian_noise', 'shot_noise', 'impulse_noise', 'pixelate', 'jpeg_compression']
 COR_M = [ 'defocus_blur', 'frosted_glass_blur', 'motion_blur', 'zoom_blur', 'elastic']
 COR_L = ['contrast','fog','snow','frost','brightness']
-SEV = ['1','2','3','4','5']
+SEV = ['5']
 
 def calculate(corruptions,dir):
     total_error = 0
@@ -24,7 +24,7 @@ def calculate(corruptions,dir):
             f = open(output,'r')
             error = float(f.readlines()[-1].split(' ')[-2].split('=')[-1])
             total_error += error
-    return total_error / (len(corruptions) * 5)
+    return total_error / (len(corruptions) * len(SEV))
             
         
 
